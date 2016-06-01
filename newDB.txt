@@ -1,0 +1,43 @@
+CREATE TABLE tbl_lesson(
+lesson_id int PRIMARY KEY AUTO_INCREMENT,
+    chapter text NOT NULL,
+    title text NOT NULL,
+    content text NOT NULL
+)
+
+CREATE TABLE tbl_extra(
+    extra_id int PRIMARY KEY AUTO_INCREMENT,
+    extra text NOT NULL,
+    lesson_id int NOT NULL,
+   FOREIGN KEY(lesson_id) REFERENCES tbl_lesson(lesson_id)
+)
+CREATE TABLE tbl_quiz(
+quiz_id int PRIMARY KEY AUTO_INCREMENT,
+    quizName text NOT NULL,
+    question text NOT NULL
+)
+CREATE TABLE tbl_quizAnswer(
+	quizAnswer_id int PRIMARY KEY AUTO_INCREMENT,
+	answer1 text NOT NULL,
+	answer2 text NOT NULL,
+	answer3 text NOT NULL,
+	Correctanswer text NOT NULL,
+	quiz_id int,
+	FOREIGN KEY(quiz_id) REFERENCES tbl_quiz(quiz_id)
+)
+CREATE TABLE tbl_result(
+	result_id int PRIMARY KEY AUTO_INCREMENT,
+	result int NOT NULL,
+	quiz_id int ,
+	FOREIGN KEY(quiz_id) REFERENCES tbl_quiz(quiz_id)
+)
+CREATE TABLE tbl_question(
+	question_id int PRIMARY KEY AUTO_INCREMENT,
+	question text NOT NULL
+)
+CREATE TABLE tbl_answer(
+	answer_id int PRIMARY KEY AUTO_INCREMENT,
+	answer text NOT NULL,
+	question_id int,
+	FOREIGN KEY(question_id) REFERENCES tbl_question(question_id)
+)
